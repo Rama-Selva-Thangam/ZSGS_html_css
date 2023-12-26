@@ -69,9 +69,19 @@ audio {
 }
 #song-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   background: #ff3232;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 40px 0;
+  transition: 0.5s ease;
+}
+#song-bar::-webkit-slider-thumb:hover{
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #5222ff;
   border-radius: 50%;
   cursor: pointer;
   margin: 40px 0;
