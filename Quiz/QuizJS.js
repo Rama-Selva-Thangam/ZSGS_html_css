@@ -44,7 +44,7 @@ const javaQuizData = {
     },
     {
       question:
-        "6) What is the output of the following code snippet?\n\n```java\nint x = 5;\nSystem.out.println(x++ + ++x);\n```",
+        "6) What is the output of the following code snippet?\nint x = 5;\nSystem.out.println(x++ + ++x);",
       options: ["10", "11", "12", "13"],
       answer: "12",
     },
@@ -128,23 +128,21 @@ function checkAnswer(event) {
     quizOptions.childNodes[correctIndex].classList.add("success");
   }
 
-  quizOptions.childNodes.forEach((option) => {
-    option.removeEventListener("click", checkAnswer);
-  });
   nextBtn.style.display = "block";
 }
 
 function nextQuestion() {
-  if (currentQuestionIndex < javaQuizData.questions.length - 1) {
-    quizOptions.childNodes.forEach((option) => {
-      option.classList.remove("success", "wrong");
-    });
+  quizOptions.childNodes.forEach((option) => {
+    option.classList.remove("success", "wrong");
+    option.removeEventListener("click", checkAnswer);
+  });
 
+  if (currentQuestionIndex < javaQuizData.questions.length - 1) {
     currentQuestionIndex++;
     loadQuestion();
-    nextBtn.style.display = "none";
   } else {
-    showFinalScore();
+    submitBtn.style.display = "block";
+    nextBtn.style.display = "none";
   }
 }
 
@@ -155,7 +153,7 @@ function showFinalScore() {
   finalScoreDiv.querySelector(
     "#final-score"
   ).innerText = `Your Score: ${score}`;
-  submitBtn.style.display = "none"; 
+  submitBtn.style.display = "none";
 }
 
 function resetQuiz() {
@@ -167,4 +165,5 @@ function resetQuiz() {
   finalScoreDiv.style.display = "none";
   submitBtn.style.display = "block";
 }
+
 loadQuestion();
